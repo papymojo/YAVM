@@ -1,0 +1,18 @@
+# test program
+StringAlloc ping , Ping
+StringAlloc pong , Pong
+AllocateArray Array , 10
+
+Move R2 , 10
+Loop : 
+JumpIfGreater 0 , R2 , EndLoop
+StoreInArray Array , R2 , R2
+Subtract R2 , 1 , R2
+Jump Loop
+EndLoop : 
+Fork
+GetPid R1
+JumpIfEqual R1 , 0 , Thread
+Debug pong
+Thread : 
+Debug ping
